@@ -1,3 +1,9 @@
+"""
+Module providing pygame
+
+"""
+
+
 import pygame
 import os
 import random
@@ -30,6 +36,12 @@ BG = pygame.image.load(os.path.join("Assets/Other", "Track.png"))
 
 
 class Dinosaur:
+
+    """
+        This class provides Dinosaur
+    
+    """
+
     X_POS = 80
     Y_POS = 310
     Y_POS_DUCK = 340
@@ -103,6 +115,11 @@ class Dinosaur:
 
 
 class Cloud:
+
+    """
+        This class provides Cloud.
+    """
+
     def __init__(self):
         self.x = SCREEN_WIDTH + random.randint(800, 1000)
         self.y = random.randint(50, 100)
@@ -120,6 +137,11 @@ class Cloud:
 
 
 class Obstacle:
+
+    """
+        This class provides Obstacle
+    """
+
     def __init__(self, image, type):
         self.image = image
         self.type = type
@@ -136,6 +158,11 @@ class Obstacle:
 
 
 class SmallCactus(Obstacle):
+
+    """
+        This class provides Small Cactus
+    """
+
     def __init__(self, image):
         self.type = random.randint(0, 2)
         super().__init__(image, self.type)
@@ -150,6 +177,11 @@ class LargeCactus(Obstacle):
 
 
 class Bird(Obstacle):
+
+    """
+        This class provides Birds.
+    """
+
     def __init__(self, image):
         self.type = 0
         super().__init__(image, self.type)
@@ -210,11 +242,14 @@ def main():
         player.update(userInput)
 
         if len(obstacles) == 0:
-            if random.randint(0, 2) == 0:
+
+            random_variable = random.randint(0,2)
+
+            if random_variable == 0:
                 obstacles.append(SmallCactus(SMALL_CACTUS))
-            elif random.randint(0, 2) == 1:
+            elif random_variable == 1:
                 obstacles.append(LargeCactus(LARGE_CACTUS))
-            elif random.randint(0, 2) == 2:
+            else:
                 obstacles.append(Bird(BIRD))
 
         for obstacle in obstacles:
